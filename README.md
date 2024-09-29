@@ -21,6 +21,11 @@
 make up
 ```
 
+詳細可看
+```bash
+make help
+```
+
 ## Develop Concept Road Map
 - 建置基本Code Base框架
 - 建置開發環境
