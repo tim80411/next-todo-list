@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: local.dockerfile
+    ports:
+      - "3002:3000"
+    volumes:
+      - .:/app
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/todo
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=todo
+    ports: 
+      - "5433:5432"
+    volumes:
+      - next_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  next_postgres_data:
