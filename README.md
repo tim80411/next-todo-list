@@ -1,4 +1,9 @@
 # Next-Todo-List
+![設計圖](./todo-list-ui.svg)
+-- By Claude
+
+優先開發核心功能，Footer、Filter留後
+
 
 ## interview requirement
 
