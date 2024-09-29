@@ -42,3 +42,12 @@ make help
 - 開發畫面 -> 開發資料流 -> 串接資料流 -> 優化
   - TODO
 - 程式碼檢查、優化
+
+## Modified
+- fix typescript error: upgrade "eslint-config-next"
+- use eslint-prettier for better DevX
+
+
+## Expect To Add
+- server side logger: pino, winston...etc
+- 

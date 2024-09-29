@@ -1,20 +1,16 @@
-'use client'
-import { useRef } from 'react';
+"use client";
+import { useRef } from "react";
 
 export default function AddTodoForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = async (formData: FormData) => {
-    console.log(formData)
+    console.log(formData);
     // TODO: serer action
     formRef.current?.reset();
-  }
+  };
 
   return (
-    <form 
-      ref={formRef}
-      className="flex mb-4"
-      action={handleSubmit}
-    >
+    <form ref={formRef} className="flex mb-4" action={handleSubmit}>
       <input
         type="text"
         placeholder="Add a new task..."

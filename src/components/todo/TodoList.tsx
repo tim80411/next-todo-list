@@ -1,13 +1,16 @@
-'use client'
-import React, { useState } from 'react';
-import TodoItem from './TodoItem';
-import { Pagination } from '@mui/material';
+"use client";
+import React, { useState } from "react";
+import TodoItem from "./TodoItem";
+import { Pagination } from "@mui/material";
 
 export default function TodoList() {
   const [page, setPage] = useState(1);
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    console.log('page change', value);
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    console.log("page change", value);
     setPage(value);
   };
 
