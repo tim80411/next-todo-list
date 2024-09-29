@@ -1,7 +1,10 @@
-export default function TodoList()  {
+import TodoItem from './TodoItem';
+
+export default function TodoList() {
   return (
-    <div>
-      <p>Todo list will be implemented here</p>
+    <div className="w-full bg-white">
+      <TodoItem/>
+      <TodoItem/>
     </div>
-  )
+  );
 }
