@@ -11,10 +11,13 @@ import { ITodo } from "@/lib/types/entities/todo";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import clsx from "clsx";
 import { useRef } from "react";
+import { Toast } from "../ui/Toast";
+import { useToastState } from "@/lib/hooks/useToastState";
 
 export default function TodoItem({ todo }: { todo: ITodo }) {
   const checkBoxFormRef = useRef<HTMLFormElement>(null);
   const checkBoxRef = useRef<HTMLInputElement>(null);
+  const { toastState, hideToast, showToast } = useToastState();
   const queryClient = useQueryClient();
 
   const updateMutation = useMutation<
@@ -30,11 +33,12 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
       return result;
     },
     onSuccess: () => {
-      alert("todo updated");
       queryClient.invalidateQueries({ queryKey: [QueryKey.HOME] });
+      showToast("todo updated", { severity: "success" });
     },
     onError: (error) => {
-      alert(error.message || "update todo failed");
+      const errMsg = error.message || "update todo failed";
+      showToast(errMsg, { severity: "error" });
     },
   });
 
@@ -51,11 +55,12 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
       return result;
     },
     onSuccess: () => {
-      alert("todo disabled");
       queryClient.invalidateQueries({ queryKey: [QueryKey.HOME] });
+      showToast("todo disabled", { severity: "success" });
     },
     onError: (error) => {
-      alert(error.message || "disable todo failed");
+      const errMsg = error.message || "disable todo failed";
+      showToast(errMsg, { severity: "error" });
     },
   });
 
@@ -105,6 +110,13 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
           ✕
         </button>
       </form>
+      <Toast
+        open={toastState.open}
+        message={toastState.message}
+        severity={toastState.severity}
+        duration={toastState.duration}
+        onClose={hideToast}
+      />
     </div>
   );
 }
