@@ -43,7 +43,7 @@ export default function AddTodoForm() {
     },
   });
   const handleSubmit = (formData: FormData) => {
-    const title = formData.get("title") as string;
+    const title = formData.get("title")?.toString() || "";
     mutation.mutate({ title });
   };
 
