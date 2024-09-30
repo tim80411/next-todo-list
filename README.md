@@ -4,22 +4,6 @@
 
 優先開發核心功能，Footer、Filter留後
 
-
-## interview requirement
-
-建立一個Next.js專案寫一個To-Do List作品，要能修改刪除，其他規格如下：
-
-- 必須使用zod, next-safe-action, react-query。
-- 需注重type safety。
-- 不需要權限系統。
-- 任意資料儲存形式都行，但如果使用DB需以prisma為中介。
-- 需要分頁。
-- 可以用任意AI，但不能請他人協助。
-- 程式品質優先於是否達成。
-- 使用以下package.json不能修改。
-- 寫簡易的專案開啟教學。
-- 必須用commit保留過程。
-
 ## Start
 參考make file
 ```bash
