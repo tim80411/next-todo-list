@@ -23,13 +23,20 @@ export const pageTodo = actionClient(
     try {
       const [todoList, todoAmount] = await Promise.all([
         prisma.todo.findMany({
+          where: {
+            disabled: false,
+          },
           skip: (pageNumber - 1) * pageSize,
           take: pageSize,
           orderBy: {
             createdAt: Prisma.SortOrder.desc,
           },
         }),
-        prisma.todo.count(),
+        prisma.todo.count({
+          where: {
+            disabled: false,
+          },
+        }),
       ]);
 
       const data: BasePagination<ITodo> = {

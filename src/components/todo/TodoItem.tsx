@@ -1,5 +1,6 @@
 "use client";
 
+import { disableTodo, DisableTodoInput } from "@/actions/todo/disableTodo";
 import {
   updateTodo,
   UpdateTodoAction,
@@ -37,6 +38,27 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
     },
   });
 
+  const disableMutation = useMutation<
+    Awaited<ReturnType<UpdateTodoAction>>,
+    Error,
+    DisableTodoInput
+  >({
+    mutationFn: async (data) => {
+      const result = await disableTodo(data);
+      if (!result.data?.success) {
+        throw new Error(result.data?.error);
+      }
+      return result;
+    },
+    onSuccess: () => {
+      alert("todo disabled");
+      queryClient.invalidateQueries({ queryKey: [QueryKey.HOME] });
+    },
+    onError: (error) => {
+      alert(error.message || "disable todo failed");
+    },
+  });
+
   const handleToggle = () => {
     const isCheck = checkBoxRef.current?.checked;
     const completedAt = isCheck ? new Date() : null;
@@ -44,7 +66,7 @@ export default function TodoItem({ todo }: { todo: ITodo }) {
   };
 
   const handleDelete = () => {
-    alert("delete todo");
+    disableMutation.mutate({ id: todo.id });
   };
 
   const handleInputOnChange = () => {
