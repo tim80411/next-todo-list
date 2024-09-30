@@ -6,7 +6,7 @@ up:
 	docker compose logs -f app
 
 rebuild:
-	docker compose up -d --build
+	docker compose up -d --build --force-recreate
 	docker compose logs -f app
 
 down:

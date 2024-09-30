@@ -31,6 +31,9 @@ make up
 make help
 ```
 
+NOTE:
+- 專案如果有新套件、新model設定都需要重啟container(`make rebuild`)：直接套用本地會因為環境不一造成套件依賴錯誤
+
 ## Develop Concept Road Map
 - 建置基本Code Base框架
 - 建置開發環境
@@ -50,4 +53,3 @@ make help
 
 ## Expect To Add
 - server side logger: pino, winston...etc
-- 
