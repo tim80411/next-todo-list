@@ -2,7 +2,11 @@ ENV ?= local
 
 # local
 up:
-	docker compose up -d
+	docker compose up -d 
+	docker compose logs -f app
+
+rebuild:
+	docker compose up -d --build
 	docker compose logs -f app
 
 down:
@@ -36,6 +40,7 @@ help:
 	@echo "Targets:"
 	@echo "<Local>"
 	@echo "  up              Start containers and show logs"
+	@echo "  rebuild         Rebuild containers and show logs"
 	@echo "  down            Stop containers and remove images"
 	@echo "  logs            Show container logs"
 	@echo "  restart         Restart containers"
