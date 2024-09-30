@@ -1,8 +1,8 @@
 "use server";
 
 import { z } from "zod";
-import { actionClient } from "./actionClient";
-import prismaClient from "@/db/prismaClient";
+import { actionClient } from "../actionClient";
+import prisma from "@/db/prismaClient";
 import { ICreateTodoResponse } from "./interface/createTodo";
 
 const schema = z.object({
@@ -14,7 +14,7 @@ export const createTodo = actionClient(
   schema,
   async ({ title }: CreateTodoInput): Promise<ICreateTodoResponse> => {
     try {
-      const newTodo = await prismaClient.todo.create({
+      const newTodo = await prisma.todo.create({
         data: {
           title,
         },

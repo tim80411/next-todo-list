@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const prismaClient = new PrismaClient({
+const prisma = new PrismaClient({
   log: [
     {
       emit: "event",
@@ -22,17 +22,17 @@ const prismaClient = new PrismaClient({
 });
 
 // TODO: should import logger for production
-prismaClient.$on("error" as never, (event) => {
+prisma.$on("error" as never, (event) => {
   console.error(event);
 });
-prismaClient.$on("warn" as never, (event) => {
+prisma.$on("warn" as never, (event) => {
   console.warn(event);
 });
-prismaClient.$on("info" as never, (event) => {
+prisma.$on("info" as never, (event) => {
   console.info(event);
 });
-prismaClient.$on("query" as never, (event) => {
+prisma.$on("query" as never, (event) => {
   console.log(event);
 });
 
-export default prismaClient;
+export default prisma;

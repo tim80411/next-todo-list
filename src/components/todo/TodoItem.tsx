@@ -1,7 +1,8 @@
 "use client";
+import { ITodo } from "@/lib/types/entities/todo";
 import { useRef, useTransition } from "react";
 
-export default function TodoItem() {
+export default function TodoItem({ todo }: { todo: ITodo }) {
   const checkBoxRef = useRef<HTMLFormElement>(null);
   const [isPending, startTransition] = useTransition();
 
@@ -19,6 +20,10 @@ export default function TodoItem() {
     });
   };
 
+  const handleInputOnChange = () => {
+    checkBoxRef.current?.requestSubmit();
+  };
+
   return (
     <div className="bg-white flex py-2 px-2 border">
       <form
@@ -28,15 +33,13 @@ export default function TodoItem() {
       >
         <input
           type="checkbox"
-          checked={true}
+          checked={todo.completedAt !== null}
           className="form-checkbox h-5 w-5 text-green-600"
-          onChange={() => {
-            checkBoxRef.current?.requestSubmit();
-          }}
+          onChange={handleInputOnChange}
         />
       </form>
       <span className={"flex-grow px-2 text-left flex items-center"}>
-        {"x".repeat(20)}
+        {todo.title}
       </span>
       <form action={handleDelete} className="flex-none w-8">
         <button

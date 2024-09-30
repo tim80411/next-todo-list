@@ -5,7 +5,7 @@ import {
   createTodo,
   CreateTodoAction,
   CreateTodoInput,
-} from "@/actions/createTodo";
+} from "@/actions/todo/createTodo";
 import clsx from "clsx";
 import { z } from "zod";
 import { QueryKey } from "@/lib/enum/queryKey";
@@ -29,7 +29,9 @@ export default function AddTodoForm() {
     onSuccess: () => {
       alert("待辦事項已創建");
       formRef.current?.reset();
-      queryClient.invalidateQueries({ queryKey: [QueryKey.HOME] });
+      queryClient.invalidateQueries({
+        queryKey: [QueryKey.HOME],
+      });
     },
     onError: (error) => {
       if (error instanceof z.ZodError) {
